@@ -19,4 +19,4 @@ The complete scientific preprint with all mathematical derivations is available 
 ### Call for Collaboration:
 I am looking for someone experienced in N-body simulations or Python (Astropy/Galpy) to scale this model from local systems (Sun/Moon) to galactic rotation curves.
 
-**Contact:** [Sem dej odkaz na svůj web nebo svůj e-mail]
+**Contact:** [karelpichler@gmail.com(https://sites.google.com/view/61plusminus/domovsk%C3%A1-str%C3%A1nka)
