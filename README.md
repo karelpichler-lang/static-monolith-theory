@@ -5,30 +5,37 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## 🌌 Abstract
-The Static Monolith Theory proposes that space-time is not a void but a high-tension medium (Quantum Foam) with a vacuum energy density of $\approx 10^{113} J/m^3$. Gravity is redefined as a mechanical gradient of the local vacuum capacity ($\Phi$), eliminating the need for Dark Matter and reconciling the Vacuum Catastrophe.
+The Static Monolith Theory proposes that space-time is not a void but a high-tension medium (Quantum Foam). Gravity is redefined as a mechanical gradient of the local vacuum capacity ($\Phi$), where mass represents an energy "debt" that locally depletes this capacity.
 
-## 🚀 Key Benchmarks (Verified)
-This repository contains Python scripts validating the model against historical and modern astronomical data using a single stress constant $\kappa = 7.42 \times 10^{-28} m/kg$:
+## 🚀 Key Benchmarks (Verified Predictions)
+All predictions are calculated using a single, universal stress constant $\kappa = 7.42 \times 10^{-28} \, \text{m/kg}$, derived from Earth's GPS time dilation data.
 
-| Phenomenon | Prediction (Monolith) | Observed Value |
-| :--- | :--- | :--- |
-| **Light Deflection (Sun)** | $1.7499''$ | $1.75''$ (Eddington 1919) |
-| **Lunar Time Dilation** | $56.38 \mu s/day$ | $56.4 \mu s/day$ (NASA/LTC) |
-| **Mercury Perihelion Drift** | $42.98'' / century$ | $43.1''$ (Standard Observation) |
+| Phenomenon | Monolith Prediction | Observed Value | Verification Script |
+| :--- | :--- | :--- | :--- |
+| **Mercury Perihelion Drift** | **42.98''** / century | 43.1'' (Standard) | `mercury_precession.py` |
+| **Light Deflection (Sun)** | **1.7499''** | 1.75'' (Eddington) | `sun_light_bending.py` |
+| **Lunar Time Dilation*** | **56.02 $\mu$s** / day | 56.4 $\mu$s (NASA/LTC) | `moon_time_dilation.py` |
 
-## 🛠 Core Mechanics
-The local vacuum capacity $\Phi$ follows a non-linear exponential decay:
+*\*Calculation includes Earth's rotation, Moon's orbital velocity, and the mass of all three bodies.*
+
+## 🛠 How to Verify
+This repository provides independent Python scripts to verify each benchmark. No complex libraries are required, only standard `numpy`.
+
+1. **Clone the repo:** `git clone https://github.com/karelpichler-lang/static-monolith-theory.git`
+2. **Run verification:** `python mercury_precession.py`
+
+## 🧪 Core Mechanics
+The local vacuum capacity $\Phi$ follows a non-linear exponential decay based on the mass distribution:
 $$\Phi_{local} = \exp\left(-\sum \frac{\kappa \cdot m_i}{r_i}\right)$$
 
-This scale-invariant approach ensures that the speed of light ($c$) remains constant while local metrics of time and space compress symmetrically within energy "debts" (mass).
+In this model, the effective gravitational acceleration is modified by the vacuum capacity:
+$$\vec{a} = \vec{a}_{newton} \cdot \frac{1}{\Phi^3}$$
 
-## 🤝 Call for Collaboration: N-Body Simulations
-I am actively seeking developers and astrophysicists experienced in:
-* **N-Body Simulators** (Gadget-4, Galpy, or custom Python solvers).
-* **Galactic Rotation Curves** (SPARC database integration).
-
-The goal is to implement the $\Phi$ gradient-based gravity law into a full-scale galactic simulation to demonstrate the emergence of flat rotation curves without Dark Matter.
+## 🤝 Call for Collaboration
+I am seeking developers and physicists to help implement this $\Phi$ gradient-based gravity law into:
+* **N-Body Simulators** (to test galactic rotation curves without Dark Matter).
+* **Relativistic Hydrodynamics** simulations.
 
 ---
-**Full Documentation:** [Project Website](https://sites.google.com/view/61plusminus)
+**Full Documentation:** [Project Website](https://sites.google.com/view/61plusminus)  
 **Contact:** karelpichler@gmail.com
