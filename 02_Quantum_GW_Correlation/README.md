@@ -26,7 +26,13 @@ We seek experts to derive the exact **Accumulated Error Function** based on:
 | :--- | :--- | :--- | :--- |
 | **GW231226_101520** | `1387620938.34` | 34.7 | High Phi Fluctuation |
 | **GW240105_151143** | `1388502721.20` | 25.9 | Critical Sync Error |
-| ... (and other high SNR events from the table) ... |
+| **GW231206_233901** | `1385941159.50` | 21.9 | Cumulative Decoherence |
+| **GW231123_135430** | `1384782888.70` | 21.8 | Phase Shift Analysis |
+| **GW231102_071736** | `1382944674.40` | 15.6 | Quantum Noise Floor |
+| **GW240104_164932** | `1388422190.60` | 14.8 | Gate Fidelity Dip |
+| **GW231224_024321** | `1387421020.00` | 14.0 | Time-flow mismatch |
+| **GW231231_154016** | `1388072434.70` | 13.4 | Qubit Phase Offset |
+| **GW231206_233134** | `1385940712.50` | 12.8 | Noise Correlation |
 
 ---
 *Contributions that do not align with the Φ-gradient logic as defined in the primary manifest will not be merged.*
