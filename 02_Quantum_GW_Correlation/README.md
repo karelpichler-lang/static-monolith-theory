@@ -19,7 +19,7 @@ Decoherence in this model is a mechanical result of two factors:
 ## 3. The Challenge for Physicists & Developers
 We seek experts to derive the exact **Accumulated Error Function** based on:
 * The $\Phi$ gradient equations from Manifest v1.9.
-* The 4D interaction between the spatially separated control system and the qubit during a GW passage.
+* The 4D interaction between the spatially separated control system and the qubit during a GW passage..
 
 ## 4. High-SNR Target Events (LIGO Data)
 | Event ID | GPS Timestamp (s) | Network SNR | Impact Type |
