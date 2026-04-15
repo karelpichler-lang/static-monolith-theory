@@ -35,4 +35,5 @@ We seek experts to derive the exact **Accumulated Error Function** based on:
 | **GW231206_233134** | `1385940712.50` | 12.8 | Noise Correlation |
 
 ---
+For specific GPS times, the direction and distance from the Lifo/Virgo detector must of course be taken into account.
 *Contributions that do not align with the Φ-gradient logic as defined in the primary manifest will not be merged.*
