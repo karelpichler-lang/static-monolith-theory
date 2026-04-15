@@ -14,7 +14,7 @@ All predictions are calculated using a single, universal stress constant $\kappa
 | :--- | :--- | :--- | :--- |
 | **Mercury Perihelion Drift** | **42.98''** / century | 43.1'' (Standard) | `mercury_precession.py` |
 | **Light Deflection (Sun)** | **1.7499''** | 1.75'' (Eddington) | `sun_light_bending.py` |
-| **Lunar Time Dilation*** | **56.02 $\mu$s** / day | 56.4 $\mu$s (NASA/LTC) | `moon_time_dilation.py` |
+| **Lunar Time Dilation*** | **56.02 mus** / day | 56.4 mus (NASA/LTC) | `moon_time_dilation.py` |
 
 *\*Calculation includes Earth's rotation, Moon's orbital velocity, and the mass of all three bodies.*
 
