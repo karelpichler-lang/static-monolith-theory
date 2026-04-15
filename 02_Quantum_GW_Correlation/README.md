@@ -1,39 +1,32 @@
-# 🔬 Challenge: Quantum Decoherence & GW Correlation (Effect Φ)
+# 🔬 Challenge: Quantum Decoherence, Spatial Geometry & the Φ Effect
 
-This sub-project focuses on correlating high-impact Gravitational Wave (GW) events with phase de-synchronization and error rates in Quantum Processing Units (QPUs). 
+This sub-project focuses on the correlation between Gravitational Waves (GW) and quantum decoherence, viewed through the lens of the **Static Monolith Theory (v1.9)**. 
 
-## 1. Theoretical Foundation
-According to the **Static Monolith Theory (v1.9)**, Gravitational Waves are not merely geometric distortions but transient fluctuations in local vacuum capacity ($\Phi$). This capacity dictates the local rate of time flow:
-* **Equation:** $t_{local} = t_{univ} \cdot \Phi_{local}$
+## ⚠️ Mandatory Prerequisite
+Before contributing or analyzing data, it is **strictly required** to study the logic and mathematics of the Static Monolith model available at [sites.google.com/view/61plusminus](https://sites.google.com/view/61plusminus). 
+The core of this challenge lies in the specific values of **Φ (Vacuum Capacity)** and its gradient.
 
-## 2. The Mechanism of the "Quantum Clock Anomaly"
-Quantum gates rely on precise microwave pulses timed to the qubit's phase. 
-* **The Problem:** The control electronics (clock) and the qubit are spatially separated. 
-* **The Effect:** During a GW passage, the oscillation of $\Phi$ causes a transient "time-flow" mismatch between the control unit and the qubit.
-* **Impact:** For a QPU running 300,000 operations within a 2ns window, even a $10^{-20}$ change in $\Phi$ accumulates into a significant phase drift, leading to decoherence.
+## 1. Beyond Geometry: The Space-Time Coupling
+In this model, a Gravitational Wave is not just a ripple in geometry, but a transient fluctuation in the "stiffness" of the Monolith. This fluctuation simultaneously alters:
+1. **Spatial Geometry:** The physical path $L$ between components.
+2. **Local Time Flow:** The internal frequency of qubits and master clocks, defined by $t_{local} = t_{univ} \cdot \Phi_{local}$.
 
-## 3. High-SNR Correlation Table (Data for Analysts)
-The following events are selected from LIGO/Virgo/KAGRA datasets due to their high Signal-to-Noise Ratio (SNR). These represent the strongest "stress tests" for the Monolith's stiffness.
+## 2. The Mechanism: Dual-Source Synchronization Error
+Decoherence in this model is a mechanical result of two factors:
+* **Spatial Separation:** The Master Clock (control unit) and the Qubit are separated by distance $L$. A passing GW wave-front hits them at different times and with different $\Phi$ intensities.
+* **Cumulative Phase Drift:** Because $\Phi$ dictates the speed of light and time flow, the microwave control pulses arrive at the qubit out of phase. Over 300,000 operations, this "time-jitter" accumulates into a complete loss of quantum state (decoherence).
 
-| Event ID | GPS Timestamp (s) | Network SNR | Theoretical Target |
+## 3. The Challenge for Physicists & Developers
+We seek experts to derive the exact **Accumulated Error Function** based on:
+* The $\Phi$ gradient equations from Manifest v1.9.
+* The 4D interaction between the spatially separated control system and the qubit during a GW passage.
+
+## 4. High-SNR Target Events (LIGO Data)
+| Event ID | GPS Timestamp (s) | Network SNR | Impact Type |
 | :--- | :--- | :--- | :--- |
-| **GW231226_101520** | `1387620938.34` | 34.7 | Phase Drift / T2 Relaxation |
-| **GW240105_151143** | `1388502721.20` | 25.9 | Phase Drift / T2 Relaxation |
-| **GW231028_153006** | `1382542224.30` | 22.4 | Phase Drift / T2 Relaxation |
-| **GW231206_233901** | `1385941159.50` | 21.9 | Phase Drift / T2 Relaxation |
-| **GW231123_135430** | `1384782888.70` | 21.8 | Phase Drift / T2 Relaxation |
-| **GW231123_135430** | `1384782888.60` | 20.7 | Phase Drift / T2 Relaxation |
-| **GW231102_071736** | `1382944674.40` | 15.6 | Phase Drift / T2 Relaxation |
-| **GW240104_164932** | `1388422190.60` | 14.8 | Phase Drift / T2 Relaxation |
-| **GW231224_024321** | `1387421020.00` | 14.0 | Phase Drift / T2 Relaxation |
-| **GW231231_154016** | `1388072434.70` | 13.4 | Phase Drift / T2 Relaxation |
-| **GW231206_233134** | `1385940712.50` | 12.8 | Phase Drift / T2 Relaxation |
-| **GW231108_125142** | `1383483120.50` | 12.6 | Phase Drift / T2 Relaxation |
-| **GW231020_142947** | `1381847405.60` | 12.0 | Phase Drift / T2 Relaxation |
-| **GW231104_133418** | `1383140076.90` | 11.8 | Phase Drift / T2 Relaxation |
-
-## 4. Call for Collaboration
-We are looking for researchers with access to QPU error logs (IBM Quantum, Google Quantum AI, etc.) to perform statistical cross-correlation within a $\pm 10ms$ window around these GPS timestamps. 
+| **GW231226_101520** | `1387620938.34` | 34.7 | High Phi Fluctuation |
+| **GW240105_151143** | `1388502721.20` | 25.9 | Critical Sync Error |
+| ... (and other high SNR events from the table) ... |
 
 ---
-*For full mathematical derivations, see Manifest v1.9 in the root directory.*
+*Contributions that do not align with the Φ-gradient logic as defined in the primary manifest will not be merged.*
