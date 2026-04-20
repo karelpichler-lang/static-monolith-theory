@@ -17,7 +17,17 @@ All predictions are calculated using a single, universal stress constant $\kappa
 | **Lunar Time Dilation*** | **56.02 mus** / day | 56.4 mus (NASA/LTC) | `moon_time_dilation.py` |
 
 *\*Calculation includes Earth's rotation, Moon's orbital velocity, and the mass of all three bodies.*
+### 🎥 New: Interactive Simulation of the "Dark Matter Illusion"
+Standard cosmology uses Dark Matter to explain flat galactic rotation curves. The Static Monolith Theory (v1.9) predicts that this flat curve is not caused by invisible mass, but is an **optical-metric illusion** caused by the observer's position within a gravitational debt.
 
+I have created an N-body simulation (`monolith_v4_dynamic_observer.py`) that models this exact effect without using any Dark Matter.
+
+* **Left panel (Physical Reality):** Stars orbit exclusively according to Newton's laws. The observer (Earth) is moving in an elliptical orbit deep within the central energy debt.
+* **Right panel (Observed Rotation Curve):** The model calculates the Coefficient of Relative Perception ($S = \Phi_{source} / \Phi_{observer}$). As our local time and meter deform, the observed speeds of peripheral stars optically decouple from the Newtonian curve, perfectly simulating the flat curve conventionally attributed to Dark Matter.
+
+[**Watch the video proof here (dark_matter_illusion_sim.mp4)**](./dark_matter_illusion_sim.mp4)
+
+*Try it yourself by running the Python script in this repository.*
 ## 🛠 How to Verify
 This repository provides independent Python scripts to verify each benchmark. No complex libraries are required, only standard `numpy`.
 
