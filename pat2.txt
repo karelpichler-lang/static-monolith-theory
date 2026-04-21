@@ -1,0 +1,132 @@
+import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib.animation as animation
+
+# --- NASTAVENÍ SIMULACE ---
+G = 6.67430e-11
+KAPPA = 7.42e-28  
+M_CENTER = 1.0e35  
+NUM_STARS = 1500     # Obrovská galaxie
+DT = 20000.0       
+SOFTENING = 2e10   
+
+# Strhávání časoprostoru (Bod 16 Manifestu)
+FRAME_DRAGGING = True
+DRAG_FORCE = 8e21    
+N_EXPONENT = 3.0     
+
+# Síla optické iluze
+OPTICAL_POWER = 3.0 
+
+# --- INICIALIZACE OBROVSKÉ GALAXIE ---
+r = np.random.uniform(1e11, 28e11, NUM_STARS) 
+theta = np.random.uniform(0, 2*np.pi, NUM_STARS)
+x = r * np.cos(theta)
+y = r * np.sin(theta)
+
+v_circ = np.sqrt(G * M_CENTER / r)
+vx = -v_circ * np.sin(theta)
+vy = v_circ * np.cos(theta)
+
+# Vytvoření 150 fialových "testovacích" hvězd blízko středu pro ukázku víru
+NUM_INNER = 150
+r[:NUM_INNER] = np.random.uniform(0.5e11, 4e11, NUM_INNER)
+x[:NUM_INNER] = r[:NUM_INNER] * np.cos(theta[:NUM_INNER])
+y[:NUM_INNER] = r[:NUM_INNER] * np.sin(theta[:NUM_INNER])
+vx[:NUM_INNER] *= 0.05
+vy[:NUM_INNER] *= 0.05
+
+colors = ['magenta'] * NUM_INNER + ['cyan'] * (NUM_STARS - NUM_INNER)
+
+# --- INICIALIZACE POZOROVATELE (Země) ---
+# Namísto rychlosti si rovnou zafixujeme konstantní poloměr a úhlovou rychlost
+R_OBS_FIXED = 8e11
+omega_obs = (np.sqrt(G * M_CENTER / R_OBS_FIXED)) / R_OBS_FIXED
+x_obs, y_obs = R_OBS_FIXED, 0.0
+
+# --- NASTAVENÍ OKEN (Grafiky) ---
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(15, 7))
+fig.canvas.manager.set_window_title('Test v6.1 - Stabilní iluze Temné hmoty (Monolit v1.9)')
+fig.patch.set_facecolor('#1a1a1a')
+
+# Levé okno (Fyzikální mapa)
+ax1.set_facecolor('black')
+scatter_gal = ax1.scatter(x, y, s=2, c=colors, alpha=0.7)
+ax1.scatter([0], [0], s=40, color='yellow', label="Rotující centrum (Jádro)")
+scatter_obs = ax1.scatter([x_obs], [y_obs], s=35, color='#39FF14', label="Země (Kruhová dráha)", zorder=5)
+ax1.set_xlim(-3e12, 3e12)
+ax1.set_ylim(-3e12, 3e12)
+ax1.set_title("Fyzikální realita: Vír pletiva a 1500 hvězd", color='white')
+ax1.legend()
+
+# Pravé okno (Rotační křivka)
+ax2.set_facecolor('#0d0d0d')
+scatter_curve = ax2.scatter(r, v_circ, s=3, c=colors, alpha=0.5, label='Pozorovaná rychlost (Iluze)')
+r_ref = np.linspace(1e11, 30e11, 100)
+v_ref = np.sqrt(G * M_CENTER / r_ref)
+ax2.plot(r_ref, v_ref, color='red', linewidth=2, label='Čistý Newton (Očekávání)')
+ax2.set_xlim(0, 30e11)
+ax2.set_ylim(0, 8e7)
+ax2.set_title("Rotační křivka (Stabilní)", color='white')
+ax2.set_xlabel("Vzdálenost od středu (r)", color='white')
+ax2.set_ylabel("Pozorovaná rychlost (v_obs)", color='white')
+ax2.tick_params(colors='white')
+ax2.legend()
+
+# --- JÁDRO VÝPOČTU ---
+def update(frame):
+    global x, y, vx, vy
+    
+    r_sq = x**2 + y**2
+    r_safe = np.sqrt(r_sq + SOFTENING**2) 
+    
+    # 1. Newtonův základ
+    a_newton = G * M_CENTER / (r_safe**2)
+    ax_acc = -a_newton * (x / r_safe)
+    ay_acc = -a_newton * (y / r_safe)
+    
+    # 2. Strhávání časoprostoru rotujícím pletivem (Bod 16)
+    if FRAME_DRAGGING:
+        phi = np.exp(-KAPPA * M_CENTER / r_safe)
+        softness = 1.0 - (phi ** N_EXPONENT)
+        a_drag = (DRAG_FORCE * softness) / (r_safe**2)
+        
+        tangent_x = -y / r_safe
+        tangent_y = x / r_safe
+        
+        ax_acc += a_drag * tangent_x
+        ay_acc += a_drag * tangent_y
+    
+    # Posun hvězd v galaxii
+    vx += ax_acc * DT
+    vy += ay_acc * DT
+    x += vx * DT
+    y += vy * DT
+    
+    scatter_gal.set_offsets(np.c_[x, y])
+    
+    # 3. ZEMĚ PŘIBITÁ NA KRUHOVOU DRÁHU (Oprava ujíždějícího grafu)
+    current_angle = omega_obs * (frame * DT)
+    current_x_obs = R_OBS_FIXED * np.cos(current_angle)
+    current_y_obs = R_OBS_FIXED * np.sin(current_angle)
+    scatter_obs.set_offsets(np.c_[current_x_obs, current_y_obs])
+    
+    # 4. VÝPOČET OPTICKÉ ILUZE V PRAVÉM OKNĚ (Bod 14 a 15)
+    current_r = np.sqrt(x**2 + y**2)
+    current_v_true = np.sqrt(vx**2 + vy**2)
+    
+    # Náš dluh je nyní absolutně konstantní!
+    phi_obs = np.exp(-KAPPA * M_CENTER / R_OBS_FIXED)
+    phi_source = np.exp(-KAPPA * M_CENTER / current_r)
+    
+    # S = Phi_zdroj / Phi_pozorovatel
+    S_factor = phi_source / phi_obs
+    observed_v = current_v_true * (S_factor ** OPTICAL_POWER)
+    
+    scatter_curve.set_offsets(np.c_[current_r, observed_v])
+    
+    return scatter_gal, scatter_obs, scatter_curve
+
+# Spuštění
+ani = animation.FuncAnimation(fig, update, frames=200, interval=20, blit=True)
+plt.show()
